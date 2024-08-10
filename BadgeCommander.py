@@ -2,7 +2,6 @@ import re
 import ttkbootstrap as ttk
 import imageres
 from tkinter import filedialog
-import ttkbootstrap.scrolled as scrolled
 from ttkbootstrap.dialogs import Messagebox
 from tkinter import font as tkFont
 import sys
@@ -55,8 +54,9 @@ def setName(Name):
         
 def writeBadUSB(scriptPath):
     try:
-        rawData=BadUSBTranslation.ScriptToHex(scriptPath)
-        STM32HID.write_badusb(rawData)
+        rawData=BadUSBTranslation.scriptToHex(scriptPath)
+        print(rawData)
+        STM32HID.send_badusb_script(rawData)
     except:
         Messagebox.show_error('Please Connect the PCB Badge to the Computer and try again', 'Error')
         checkBadgeConnection()
